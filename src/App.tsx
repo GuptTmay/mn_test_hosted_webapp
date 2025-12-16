@@ -1,30 +1,15 @@
-import { useEffect, useState } from "react";
-import WebApp from "@twa-dev/sdk";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import ReturnPolicy from "./pages/ReturnPolicy";
 
 function App() {
-  const [storeName, setStoreName] = useState("Store");
-
-  useEffect(() => {
-    WebApp.ready();
-    const params = new URLSearchParams(window.location.search);
-    const s = params.get("store");
-    if (s) setStoreName(s);
-  }, []);
-
-  
   return (
-    <div className="container">
-      <h1 className="title">{storeName}</h1>
-
-      <div className="product-grid">
-        <div className="card">
-          <img src="/smileShark.jpg" alt="Shark" className="product-img" />
-          <h3>Shark Toy</h3>
-          <p>₹1999</p>
-        </div>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/return-policy" element={<ReturnPolicy />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
